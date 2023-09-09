@@ -16,35 +16,29 @@ public class Main {
             int c=Integer.parseInt(inputArr[3]);
             int d=Integer.parseInt(inputArr[4]);
             int n=Integer.parseInt(inputArr[5]);
-            double[] price=new double[n];
-            double highest=0;
+            double maxDecline=0;
+            double maxPrevious=p*(Math.sin(a+b)+Math.cos(c+d)+2);
 
-            //Calculating price from 1 up to n
-
-            for(int k=1;k<=n;k++)
+            for(int k=2;k<=n;k++)
             {
-                price[k-1]=p*(Math.sin(a*k+b)+Math.cos(c*k+d)+2);
+                double currentValue=p*(Math.sin(a*k+b)+Math.cos(c*k+d)+2);
 
-            }
-            
-            // Finding the highest value
-
-            for(int i=0;i<=n-2;i++)
-            {
-                for(int j=i+1;j<=n-1;j++)
+                // Determine max decline
+                if(maxPrevious>currentValue)
                 {
-                    double decline = price[i]-price[j];
-                    if(decline>highest)
+                    double decline=maxPrevious-currentValue;
+                    
+                    // update if the decline is the maximum decline
+                    if(decline>maxDecline)
                     {
-                        highest=decline;
+                        maxDecline=decline;
                     }
                 }
+                //Update highest point in the graph and calculate subsequent max decline
+                else
+                maxPrevious=currentValue;             
             }
-
-
-            System.out.println(String.format("%.6f", highest));
-
+            System.out.println(String.format("%.6f", maxDecline));
         }
-
     }
 }
