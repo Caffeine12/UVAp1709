@@ -4,20 +4,20 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws Exception {
         Scanner sc=new Scanner(System.in);
-        String input;
+        //String input;
+        int p, a, b, c, d, n;
 
         //Taking input as many time as it is available
 
-        while((input=sc.nextLine())!=null)
-        {            
-            String[] inputArr=input.split("\\s");
-            int[] inputInt= Arrays.stream(inputArr).mapToInt(Integer::parseInt).toArray();
-            int p=inputInt[0];
-            int a=inputInt[1];
-            int b=inputInt[2];
-            int c=inputInt[3];
-            int d=inputInt[4];
-            int n=inputInt[5];
+        while(sc.hasNextInt())
+        {          
+            p=sc.nextInt();
+            a=sc.nextInt();
+            b=sc.nextInt();
+            c=sc.nextInt();
+            d=sc.nextInt();
+            n=sc.nextInt();
+            
             double maxDecline=0;
             double decline=0;
             
