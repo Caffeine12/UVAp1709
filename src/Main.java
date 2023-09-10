@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -10,13 +11,16 @@ public class Main {
         while((input=sc.nextLine())!=null)
         {            
             String[] inputArr=input.split("\\s");
-            int p=Integer.parseInt(inputArr[0]);
-            int a=Integer.parseInt(inputArr[1]);
-            int b=Integer.parseInt(inputArr[2]);
-            int c=Integer.parseInt(inputArr[3]);
-            int d=Integer.parseInt(inputArr[4]);
-            int n=Integer.parseInt(inputArr[5]);
+            int[] inputInt= Arrays.stream(inputArr).mapToInt(Integer::parseInt).toArray();
+            int p=inputInt[0];
+            int a=inputInt[1];
+            int b=inputInt[2];
+            int c=inputInt[3];
+            int d=inputInt[4];
+            int n=inputInt[5];
             double maxDecline=0;
+            double decline=0;
+            
             double maxPrevious=p*(Math.sin(a+b)+Math.cos(c+d)+2);
 
             for(int k=2;k<=n;k++)
@@ -26,12 +30,10 @@ public class Main {
                 // Determine max decline
                 if(maxPrevious>currentValue)
                 {
-                    double decline=maxPrevious-currentValue;
-                    
                     // update if the decline is the maximum decline
-                    if(decline>maxDecline)
+                    if(maxPrevious-currentValue>maxDecline)
                     {
-                        maxDecline=decline;
+                        maxDecline=maxPrevious-currentValue;
                     }
                 }
                 //Update highest point in the graph and calculate subsequent max decline
